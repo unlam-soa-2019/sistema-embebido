@@ -1,0 +1,19 @@
+# SmartTrashCan
+
+Descripción general: SmartTrashCan consiste en un contenedor de residuos inteligente. 
+
+## Sensores:
+
+**1. Infrarrojo:**
+- Modelo: Hc-sr501
+- Descripción: El sensor será utilizado para detectar la presencia de personas que se encuentren próximas a SmartTrashCan para poder abrir la tapa del mismo sin necesidad de interactuar con él.
+
+**2. Humedad:**
+- Modelo: Dht11 Arduino
+- Descripción: El sensor será utilizado para detectar el nivel de humedad y de esta forma saber qué tan degradado se encuentra el contenido dentro de SmartTrashCan, pudiendo dar aviso al usuario a través de alguna aplicación que sus deshechos no están en condiciones favorables.
+
+**3. Ultrasónico:**
+- Modelo: Hc-sr04
+- Descripción: El sensor será utilizado para verificar el nivel de basura dentro de SmartTrashCan, a partir de la distancia que existe entre la tapa y el contenido del mismo. 
+
+## Actuadores:
