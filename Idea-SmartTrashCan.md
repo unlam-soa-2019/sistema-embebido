@@ -4,9 +4,9 @@ Descripción general: SmartTrashCan consiste en un contenedor de residuos inteli
 
 Abre y cierra la tapa del contenedor al aproximarse al mismo para que se puedan arrojar los residuos.
 Contará con un juego de tres luces:
--Luz verde: El contenedor puede operar sin inconvenientes.
--Luz roja: Avisa que el contenedor está lleno de residuos.
--Luz amarilla: Avisa que los residuos están degradados.
+ - Luz verde: El contenedor puede operar sin inconvenientes.
+ - Luz roja: Avisa que el contenedor está lleno de residuos.
+ - Luz amarilla: Avisa que los residuos están degradados.
 
 ## Sensores:
 
