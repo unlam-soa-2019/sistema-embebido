@@ -1,6 +1,12 @@
 # SmartTrashCan
 
-Descripción general: SmartTrashCan consiste en un contenedor de residuos inteligente. 
+Descripción general: SmartTrashCan consiste en un contenedor de residuos inteligente. El mismo contará con las siguientes funcionalidades:
+
+Abre y cierra la tapa del contenedor al aproximarse al mismo para que se puedan arrojar los residuos.
+Contará con un juego de tres luces:
+-Luz verde: El contenedor puede operar sin inconvenientes.
+-Luz roja: Avisa que el contenedor está lleno de residuos.
+-Luz amarilla: Avisa que los residuos están degradados.
 
 ## Sensores:
 
