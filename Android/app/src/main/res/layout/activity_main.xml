@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:layout_marginTop="16dp"
-            android:paddingBottom="10px"
+            android:contentDescription="@string/description_img_ppal"
+            android:paddingBottom="10dp"
             app:srcCompat="@drawable/logotipo_full" />
 
         <TextView
@@ -31,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="¡Bienvenido!"
+            android:text="@string/welcome_label"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -39,16 +40,16 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10px"
-            android:text="Para continuar, conecte el dispositivo a su SmartTrashCan"
+            android:paddingBottom="10dp"
+            android:text="@string/start_label"
             android:textAlignment="center"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnConectar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Conectar bluetooth" />
+            android:text="@string/connect_button" />
 
     </LinearLayout>
 
