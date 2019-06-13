@@ -3,6 +3,7 @@ package com.example.smarttrashcan;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +46,7 @@ public class DispositivosBluetooth extends AppCompatActivity {
         }
     }
 
-    private String getMACAdressFromView(View view) {
+    private String getMACAddressFromView(View view) {
         // Obtiene la dirección MAC del dispositivo, que son los últimos 17 caracteres en la vista
         String viewText = ((TextView) view).getText().toString();
         return viewText.substring(viewText.length() - 17);
@@ -53,10 +54,9 @@ public class DispositivosBluetooth extends AppCompatActivity {
 
     private AdapterView.OnItemClickListener onClickDevice = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView av, View v, int arg2, long arg3) {
-            /*String address = getMACAdressFromView(v); algo no anda de esto, ver
-            Log.d(tag, "Dirección MAC obtenida: " + address);*/
-            // Realiza un intent para ir al menu de acciones, envía la MAC
+            String address = getMACAddressFromView(((ConstraintLayout) v).getChildAt(0));
 
+            // Realiza un intent para ir al menu de acciones, envía la MAC
             Intent i = new Intent(getApplicationContext(), MenuAcciones.class);
             //i.putExtra(extra_device_address, address);
             startActivity(i);
