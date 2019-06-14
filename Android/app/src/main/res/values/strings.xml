@@ -4,4 +4,9 @@
     <string name="welcome_label">¡Bienvenido!</string>
     <string name="start_label">Para continuar, conecte el dispositivo a su SmartTrashCan</string>
     <string name="connect_button">Conectar bluetooth</string>
+    <string name="btn_get_peso_actual">Obtener peso actual</string>
+    <string name="btn_set_peso_maximo">Configurar peso máximo</string>
+    <string name="btn_set_modo_juego">¡Vamos a jugar!</string>
+    <string name="btn_cerrar_bolsa">Cerrar bolsa</string>
+    <string name="label_menu_acciones">¿Qué desea hacer?</string>
 </resources>
