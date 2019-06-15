@@ -57,9 +57,9 @@ public class DispositivosBluetooth extends AppCompatActivity {
             String address = getMACAddressFromView(((ConstraintLayout) v).getChildAt(0));
 
             // Realiza un intent para ir al menu de acciones, envía la MAC
-            Intent i = new Intent(getApplicationContext(), MenuAcciones.class);
-            //i.putExtra(extra_device_address, address);
-            startActivity(i);
+            Intent intent = new Intent(getApplicationContext(), MenuAcciones.class);
+            intent.putExtra(extra_device_address, address);
+            startActivity(intent);
         }
     };
 
