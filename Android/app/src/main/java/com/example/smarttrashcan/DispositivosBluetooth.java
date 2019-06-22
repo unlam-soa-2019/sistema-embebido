@@ -81,6 +81,8 @@ public class DispositivosBluetooth extends AppCompatActivity {
         listaDispositivos.setAdapter(dispositivosVinculados);
         listaDispositivos.setOnItemClickListener(onClickDevice);
 
+        // agregar los bluetooth
+
         // Agrega a la lista los dispositivos previamente emparejados
         Set<BluetoothDevice> pairedDevices = getBluetoothAdapter().getBondedDevices();
         for (BluetoothDevice device : pairedDevices) {
