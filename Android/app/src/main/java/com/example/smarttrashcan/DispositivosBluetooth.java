@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smarttrashcan.bluetooth.ConexionBluetooth;
+
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -25,10 +27,7 @@ public class DispositivosBluetooth extends AppCompatActivity {
     private ArrayAdapter dispositivosVinculados;
 
     private BluetoothAdapter getBluetoothAdapter() {
-        if (bluetoothAdapter == null) {
-            bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        }
-        return bluetoothAdapter;
+        return ConexionBluetooth.getBluetoothAdapter();
     }
 
     private void conectarBluetooth() {
@@ -57,9 +56,9 @@ public class DispositivosBluetooth extends AppCompatActivity {
             String address = getMACAddressFromView(((ConstraintLayout) v).getChildAt(0));
 
             // Realiza un intent para ir al menu de acciones, envía la MAC
-            Intent i = new Intent(getApplicationContext(), MenuAcciones.class);
-            //i.putExtra(extra_device_address, address);
-            startActivity(i);
+            Intent intent = new Intent(getApplicationContext(), MenuAcciones.class);
+            intent.putExtra(extra_device_address, address);
+            startActivity(intent);
         }
     };
 
@@ -80,6 +79,8 @@ public class DispositivosBluetooth extends AppCompatActivity {
         ListView listaDispositivos = findViewById(R.id.listaDispositivos);
         listaDispositivos.setAdapter(dispositivosVinculados);
         listaDispositivos.setOnItemClickListener(onClickDevice);
+
+        // agregar los bluetooth
 
         // Agrega a la lista los dispositivos previamente emparejados
         Set<BluetoothDevice> pairedDevices = getBluetoothAdapter().getBondedDevices();
