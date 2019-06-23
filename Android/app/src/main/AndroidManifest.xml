@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".accion_CambieBolsa"
+            android:parentActivityName=".MenuAcciones"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuAcciones" />
+        </activity>
+        <activity
             android:name=".accion_CerrarBolsa"
             android:parentActivityName=".MenuAcciones"
             android:theme="@style/Theme.AppCompat.Light">
@@ -19,21 +27,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MenuAcciones" />
         </activity>
-        <activity android:name=".accion_ModoJuego"
+        <activity
+            android:name=".accion_ModoJuego"
             android:parentActivityName=".MenuAcciones"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MenuAcciones" />
         </activity>
-        <activity android:name=".accion_ConfigurarPesoMaximo"
+        <activity
+            android:name=".accion_ConfigurarPesoMaximo"
             android:parentActivityName=".MenuAcciones"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MenuAcciones" />
         </activity>
-        <activity android:name=".accion_ObtenePesoActual"
+        <activity
+            android:name=".accion_ObtenePesoActual"
             android:parentActivityName=".MenuAcciones"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data

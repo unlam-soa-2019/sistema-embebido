@@ -42,5 +42,8 @@ public class MenuAcciones extends AppCompatActivity {
 
         Button btnCerrarBolsa = findViewById(R.id.btnCerrarBolsa);
         SetOnClickListener(btnCerrarBolsa, accion_CerrarBolsa.class);
+
+        Button btnCambieBolsa = findViewById(R.id.btnCambieBolsa);
+        SetOnClickListener(btnCambieBolsa, accion_CambieBolsa.class);
     }
 }
