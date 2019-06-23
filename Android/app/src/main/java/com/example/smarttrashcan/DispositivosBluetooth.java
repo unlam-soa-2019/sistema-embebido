@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smarttrashcan.bluetooth.ConexionBluetooth;
+
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -25,10 +27,7 @@ public class DispositivosBluetooth extends AppCompatActivity {
     private ArrayAdapter dispositivosVinculados;
 
     private BluetoothAdapter getBluetoothAdapter() {
-        if (bluetoothAdapter == null) {
-            bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        }
-        return bluetoothAdapter;
+        return ConexionBluetooth.getBluetoothAdapter();
     }
 
     private void conectarBluetooth() {
