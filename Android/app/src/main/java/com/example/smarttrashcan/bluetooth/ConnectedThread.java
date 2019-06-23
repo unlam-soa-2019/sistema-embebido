@@ -35,22 +35,25 @@ public class ConnectedThread extends Thread {
     // metodo run del hilo, que va a entrar en una espera activa para recibir los msjs del HC05
     public void run()
     {
-        byte[] buffer = new byte[256];
-        int bytes;
-
-        //el hilo secundario se queda esperando mensajes del HC05
-        while (true)
+        if (handlerBluetooth != null)
         {
-            try
-            {
-                //se leen los datos del Bluethoot
-                bytes = mmInStream.read(buffer);
-                String readMessage = new String(buffer, 0, bytes);
+            byte[] buffer = new byte[256];
+            int bytes;
 
-                // se envía al handler el mensaje obtenido del HC05
-                handlerBluetooth.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
-            } catch (IOException e) {
-                break;
+            //el hilo secundario se queda esperando mensajes del HC05
+            while (true)
+            {
+                try
+                {
+                    //se leen los datos del Bluethoot
+                    bytes = mmInStream.read(buffer);
+                    String readMessage = new String(buffer, 0, bytes);
+
+                    // se envía al handler el mensaje obtenido del HC05
+                    handlerBluetooth.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
+                } catch (IOException e) {
+                    break;
+                }
             }
         }
     }

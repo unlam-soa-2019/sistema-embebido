@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".accion_CambieBolsa">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/label_cambie_bolsa"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/label_cambie_bolsa" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="30dp"
+            />
+
+        <Switch
+            android:id="@+id/switch_cambie_bolsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="@string/switch_cambie_bolsa" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
