@@ -22,17 +22,9 @@ import java.lang.reflect.Method;
 import java.util.UUID;
 
 public class accion_ModoJuego extends AppCompatActivity {
-
-    private BluetoothAdapter btAdapter = null;
-    private BluetoothSocket btSocket = null;
     private ConnectedThread mConnectedThread;
-    Handler bluetoothIn;
-    StringBuilder recDataString = new StringBuilder();
-    final int handlerState = 0; //used to identify handler message
-
-    // SPP UUID service  - Funciona en la mayoria de los dispositivos
-    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-
+    private Handler bluetoothIn;
+    private StringBuilder recDataString = new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +40,7 @@ public class accion_ModoJuego extends AppCompatActivity {
             public void handleMessage(android.os.Message msg)
             {
                 //si se recibio un msj del hilo secundario
-                if (msg.what == handlerState)
+                if (msg.what == ConnectedThread.handlerState)
                 {
                     //voy concatenando el msj
                     String readMessage = (String) msg.obj;
@@ -69,20 +61,6 @@ public class accion_ModoJuego extends AppCompatActivity {
 
     }
 
-
-    private BluetoothSocket createBluetoothSocket(BluetoothDevice device)
-            throws IOException {
-        if(Build.VERSION.SDK_INT >= 10){
-            try {
-                final Method m = device.getClass().getMethod("createInsecureRfcommSocketToServiceRecord", new Class[] { UUID.class });
-                return (BluetoothSocket) m.invoke(device, BTMODULEUUID);
-            } catch (Exception e) {
-                //Log.e(TAG, "Could not create Insecure RFComm Connection",e);
-            }
-        }
-        return  device.createRfcommSocketToServiceRecord(BTMODULEUUID);
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -95,9 +73,5 @@ public class accion_ModoJuego extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
             Log.e("modulojuego", e.getMessage());
         }
-
     }
-
-
-
 }

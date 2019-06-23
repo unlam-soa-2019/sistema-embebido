@@ -13,7 +13,7 @@ public class ConnectedThread extends Thread {
     private final InputStream mmInStream;
     private final OutputStream mmOutStream;
     private final Handler handlerBluetooth;
-    private final int handlerState = 0; // used to identify handler message
+    public static final int handlerState = 0; // used to identify handler message
 
     public ConnectedThread(BluetoothSocket socket, Handler bluetoothIn)
     {
