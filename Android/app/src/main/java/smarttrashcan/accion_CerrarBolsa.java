@@ -1,13 +1,13 @@
-package com.example.smarttrashcan;
+package smarttrashcan;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class accion_ConfigurarPesoMaximo extends AppCompatActivity {
+public class accion_CerrarBolsa extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accion__configurar_peso_maximo);
+        setContentView(R.layout.activity_accion__cerrar_bolsa);
     }
 }

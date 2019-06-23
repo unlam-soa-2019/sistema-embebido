@@ -1,25 +1,14 @@
-package com.example.smarttrashcan;
+package smarttrashcan;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.smarttrashcan.bluetooth.ConexionBluetooth;
-import com.example.smarttrashcan.bluetooth.ConnectedThread;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.UUID;
+import smarttrashcan.bluetooth.ConexionBluetooth;
+import smarttrashcan.bluetooth.ConnectedThread;
 
 public class accion_ModoJuego extends AppCompatActivity {
     private ConnectedThread mConnectedThread;

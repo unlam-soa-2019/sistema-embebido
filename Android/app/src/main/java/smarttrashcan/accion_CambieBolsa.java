@@ -1,20 +1,18 @@
-package com.example.smarttrashcan;
+package smarttrashcan;
 
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.smarttrashcan.bluetooth.ConexionBluetooth;
-import com.example.smarttrashcan.bluetooth.ConnectedThread;
+import smarttrashcan.bluetooth.ConexionBluetooth;
+import smarttrashcan.bluetooth.ConnectedThread;
 
 public class accion_CambieBolsa extends AppCompatActivity implements SensorEventListener {
     private ConnectedThread mConnectedThread;
@@ -88,7 +86,7 @@ public class accion_CambieBolsa extends AppCompatActivity implements SensorEvent
                         signalWasSend = true;
                     }
                 } catch (Exception e){
-                    Toast.makeText(getBaseContext(), "No pude enviar la señal :(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "No se pudo enviar la señal", Toast.LENGTH_SHORT).show();
                 }
             }
         }
