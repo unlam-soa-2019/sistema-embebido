@@ -27,7 +27,9 @@ public class MenuAcciones extends AppCompatActivity {
         setContentView(R.layout.activity_menu_acciones);
 
         Intent intent = getIntent();
-        address = intent.getStringExtra(DispositivosBluetooth.extra_device_address);
+        if (address == null) {
+            address = intent.getStringExtra(DispositivosBluetooth.extra_device_address);
+        }
 
         Button btnObtenerPesoActual = findViewById(R.id.btnPesoActual);
         SetOnClickListener(btnObtenerPesoActual, accion_ObtenePesoActual.class);
