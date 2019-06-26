@@ -24,7 +24,6 @@ public class accion_CambieBolsa extends AppCompatActivity implements SensorEvent
     {
         boolean done;
         done = sensor.registerListener(this, sensor.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-        //sensor.registerListener(this, sensor.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL);
 
         if (!done)
         {
@@ -58,7 +57,7 @@ public class accion_CambieBolsa extends AppCompatActivity implements SensorEvent
             mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, null);
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
-            Log.e("modulojuego", e.getMessage());
+            Log.e("cambiebolsa", e.getMessage());
         }
 
         //mConnectedThread.write("cambiebolsa");
@@ -81,7 +80,7 @@ public class accion_CambieBolsa extends AppCompatActivity implements SensorEvent
                 Log.i("sensor", "running");
                 try {
                     if (!signalWasSend) {
-                        mConnectedThread.write("cambiebolsa");
+                        mConnectedThread.write("c");
                         ((Switch)findViewById(R.id.switch_cambie_bolsa)).setChecked(true);
                         signalWasSend = true;
                     }

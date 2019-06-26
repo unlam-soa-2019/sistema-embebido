@@ -31,6 +31,6 @@
             android:layout_height="wrap_content"
             android:clickable="false"
             android:gravity="center"
-            android:text="@string/switch_cambie_bolsa" />
+            android:text="@string/switch_senial" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
