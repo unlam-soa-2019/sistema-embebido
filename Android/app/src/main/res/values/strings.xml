@@ -12,6 +12,9 @@
     <string name="label_menu_acciones">¿Qué desea hacer?</string>
     <string name="label_peso_actual">Peso actual del contenido del tacho</string>
     <string name="label_cambie_bolsa">Agite su celular y se enviará la señal de que ya cambió la bolsa</string>
-    <string name="switch_cambie_bolsa">La señal fue enviada</string>
+    <string name="switch_senial">La señal fue enviada</string>
+    <string name="label_cerre_bolsa">Utilize el sensor de proximidad y se enviará la señal de que se debe cerrar la bolsa</string>
+    <string name="label_modo_juego">Ubique su celular en una zona con poca luz y comience a jugar</string>
+
 </resources>
 

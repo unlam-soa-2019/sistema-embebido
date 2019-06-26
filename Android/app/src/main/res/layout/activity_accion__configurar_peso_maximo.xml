@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".accion_ConfigurarPesoMaximo">
+    tools:context="smarttrashcan.accion_ConfigurarPesoMaximo">
 
 </android.support.constraint.ConstraintLayout>

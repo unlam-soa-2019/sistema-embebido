@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.smarttrashcan">
+    package="smarttrashcan">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
 
@@ -12,64 +12,64 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".accion_CambieBolsa"
-            android:parentActivityName=".MenuAcciones"
+            android:name="smarttrashcan.accion_CambieBolsa"
+            android:parentActivityName="smarttrashcan.MenuAcciones"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuAcciones" />
+                android:value="smarttrashcan.MenuAcciones" />
         </activity>
         <activity
-            android:name=".accion_CerrarBolsa"
-            android:parentActivityName=".MenuAcciones"
+            android:name="smarttrashcan.accion_CerrarBolsa"
+            android:parentActivityName="smarttrashcan.MenuAcciones"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuAcciones" />
+                android:value="smarttrashcan.MenuAcciones" />
         </activity>
         <activity
-            android:name=".accion_ModoJuego"
-            android:parentActivityName=".MenuAcciones"
+            android:name="smarttrashcan.accion_ModoJuego"
+            android:parentActivityName="smarttrashcan.MenuAcciones"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuAcciones" />
+                android:value="smarttrashcan.MenuAcciones" />
         </activity>
         <activity
-            android:name=".accion_ConfigurarPesoMaximo"
-            android:parentActivityName=".MenuAcciones"
+            android:name="smarttrashcan.accion_ConfigurarPesoMaximo"
+            android:parentActivityName="smarttrashcan.MenuAcciones"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuAcciones" />
+                android:value="smarttrashcan.MenuAcciones" />
         </activity>
         <activity
-            android:name=".accion_ObtenePesoActual"
-            android:parentActivityName=".MenuAcciones"
+            android:name="smarttrashcan.accion_ObtenePesoActual"
+            android:parentActivityName="smarttrashcan.MenuAcciones"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuAcciones" />
+                android:value="smarttrashcan.MenuAcciones" />
         </activity>
         <activity
-            android:name=".MenuAcciones"
-            android:parentActivityName=".MainActivity"
+            android:name="smarttrashcan.MenuAcciones"
+            android:parentActivityName="smarttrashcan.MainActivity"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="smarttrashcan.MainActivity" />
         </activity>
         <activity
-            android:name=".DispositivosBluetooth"
+            android:name="smarttrashcan.DispositivosBluetooth"
             android:label="Dispositivos bluetooth"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="smarttrashcan.MainActivity"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="smarttrashcan.MainActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="smarttrashcan.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

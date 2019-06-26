@@ -1,20 +1,18 @@
-package com.example.smarttrashcan;
+package smarttrashcan;
 
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.smarttrashcan.bluetooth.ConexionBluetooth;
-import com.example.smarttrashcan.bluetooth.ConnectedThread;
+import smarttrashcan.bluetooth.ConexionBluetooth;
+import smarttrashcan.bluetooth.ConnectedThread;
 
 public class accion_CambieBolsa extends AppCompatActivity implements SensorEventListener {
     private ConnectedThread mConnectedThread;
@@ -26,7 +24,6 @@ public class accion_CambieBolsa extends AppCompatActivity implements SensorEvent
     {
         boolean done;
         done = sensor.registerListener(this, sensor.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-        //sensor.registerListener(this, sensor.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL);
 
         if (!done)
         {
@@ -60,7 +57,7 @@ public class accion_CambieBolsa extends AppCompatActivity implements SensorEvent
             mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, null);
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
-            Log.e("modulojuego", e.getMessage());
+            Log.e("cambiebolsa", e.getMessage());
         }
 
         //mConnectedThread.write("cambiebolsa");
@@ -83,12 +80,12 @@ public class accion_CambieBolsa extends AppCompatActivity implements SensorEvent
                 Log.i("sensor", "running");
                 try {
                     if (!signalWasSend) {
-                        mConnectedThread.write("cambiebolsa");
+                        mConnectedThread.write("c");
                         ((Switch)findViewById(R.id.switch_cambie_bolsa)).setChecked(true);
                         signalWasSend = true;
                     }
                 } catch (Exception e){
-                    Toast.makeText(getBaseContext(), "No pude enviar la señal :(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "No se pudo enviar la señal", Toast.LENGTH_SHORT).show();
                 }
             }
         }

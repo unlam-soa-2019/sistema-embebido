@@ -1,4 +1,4 @@
-package com.example.smarttrashcan;
+package smarttrashcan;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -14,9 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.smarttrashcan.bluetooth.ConexionBluetooth;
+import smarttrashcan.bluetooth.ConexionBluetooth;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 public class DispositivosBluetooth extends AppCompatActivity {

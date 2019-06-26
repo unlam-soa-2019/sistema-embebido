@@ -1,4 +1,4 @@
-package com.example.smarttrashcan.bluetooth;
+package smarttrashcan.bluetooth;
 
 import android.bluetooth.BluetoothSocket;
 import android.os.Handler;
