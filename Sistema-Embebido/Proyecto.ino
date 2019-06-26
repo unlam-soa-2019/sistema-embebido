@@ -23,6 +23,7 @@ float distancia;
 long tiempo;
 bool bolsaAbierta = true;
 bool seCambioBolsa = false; //Seteado desde la app
+bool cerrarBolsa = false;
 byte sensorpir = 7;
 int anotacion = 0;
  
@@ -57,7 +58,7 @@ void loop() {
   //Serial.print("Distancia: "); // imprime la distancia en el Monitor Serie
   //Serial.println(distancia);
    
-  if ((distancia < 10) && bolsaAbierta) 
+  if (((distancia < 10) && bolsaAbierta) || cerrarBolsa) 
   {
     servoMotor.write(0);
     digitalWrite(rele, HIGH);
@@ -113,7 +114,12 @@ void loop() {
       }
       Serial.print(anotacion);  
       BTserial.write(anotacion); 
-    }       
+    }
+	/*Se cierra la bolsa*/
+	if(c == 'b')
+	{
+		cerrarBolsa = true;
+	}
   }
 
   if(seCambioBolsa) //Se resetean los parámetros si se cambió la bolsa 
