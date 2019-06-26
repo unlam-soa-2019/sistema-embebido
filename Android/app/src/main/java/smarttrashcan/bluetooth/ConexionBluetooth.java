@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.os.Build;
 import android.os.Handler;
+import android.util.Log;
 
 import java.lang.reflect.Method;
 import java.util.UUID;
@@ -43,7 +44,7 @@ public class ConexionBluetooth {
     private static void testConnection(ConnectedThread thread)
         throws Exception {
         try {
-            thread.write("string-prueba-conexion");
+            thread.write("x");
         } catch (Exception e) {
             throw new Exception("Ocurrió un error enviando una cadena de prueba al bluetooth");
         }
@@ -61,6 +62,7 @@ public class ConexionBluetooth {
         try {
             BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
             BluetoothDevice device = btAdapter.getRemoteDevice(address);
+            Log.d("ConexionBluetooth", "MAC a la que intento conectar " + address);
             BluetoothSocket btSocket;
             ConnectedThread mConnectedThread;
 

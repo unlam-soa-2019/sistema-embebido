@@ -13,6 +13,7 @@ public class ConnectedThread extends Thread {
     private final InputStream mmInStream;
     private final OutputStream mmOutStream;
     private final Handler handlerBluetooth;
+    private BluetoothSocket btSocket = null;
     public static final int handlerState = 0; // used to identify handler message
 
     public ConnectedThread(BluetoothSocket socket, Handler bluetoothIn)
@@ -30,6 +31,7 @@ public class ConnectedThread extends Thread {
         mmInStream = tmpIn;
         mmOutStream = tmpOut;
         handlerBluetooth = bluetoothIn;
+        btSocket = socket;
     }
 
     // metodo run del hilo, que va a entrar en una espera activa para recibir los msjs del HC05
@@ -58,10 +60,21 @@ public class ConnectedThread extends Thread {
         }
     }
 
+    public void close() {
+        if (btSocket != null && btSocket.isConnected()) {
+            try {
+                btSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     // write method
     // si lanzo excepción lo trato desde donde lo esté llamando
     public void write(String input) throws IOException {
         byte[] msgBuffer = input.getBytes(); //converts entered String into bytes
         mmOutStream.write(msgBuffer); //write bytes over BT connection via outstream
     }
+
 }

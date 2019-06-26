@@ -107,6 +107,7 @@ public class accion_ModoJuego extends AppCompatActivity implements SensorEventLi
                 try {
                     if (!signalWasSend) {
                         mConnectedThread.write("j");
+                        mConnectedThread.close();
                         ((Switch)findViewById(R.id.switch_modo_juego)).setChecked(true);
                         signalWasSend = true;
                     }
