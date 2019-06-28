@@ -80,7 +80,9 @@ public class accion_CambieBolsa extends AppCompatActivity implements SensorEvent
                 Log.i("sensor", "running");
                 try {
                     if (!signalWasSend) {
+
                         mConnectedThread.write("c");
+                        mConnectedThread.close();
                         ((Switch)findViewById(R.id.switch_cambie_bolsa)).setChecked(true);
                         signalWasSend = true;
                     }

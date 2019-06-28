@@ -75,6 +75,7 @@ public class accion_CerrarBolsa extends AppCompatActivity implements SensorEvent
                 try {
                     if (!signalWasSend) {
                         mConnectedThread.write("b");
+                        mConnectedThread.close();
                         ((Switch)findViewById(R.id.switch_cerre_bolsa)).setChecked(true);
                         signalWasSend = true;
                     }
