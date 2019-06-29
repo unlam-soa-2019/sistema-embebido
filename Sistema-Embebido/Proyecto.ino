@@ -65,6 +65,7 @@ void loop() {
     delay(5000);
     digitalWrite(rele, LOW);
     bolsaAbierta = false;
+    cerrarBolsa  = false;
     servoMotor.write(90);
     //delay(5000);          // Sacar cuando se implemente cerrar por app --> 'c'.
     //seCambioBolsa = true; // Sacar cuando se implemente cerrar por app --> 'c'.
@@ -81,14 +82,18 @@ void loop() {
     else
     {
       servoMotor.write(0);
+      delay(1000);
     }
   }
-
+  
+  BTserial.write("hola%");
  //Si reciben datos del HC05 
   if (BTserial.available())
   { 
+    //BTserial.write("hola");
     //Se evalúa la opción enviada
     c = BTserial.read();
+    Serial.print(c);
     /*Cerrar tapa luego de cambiar la bolsa*/
     if(c == 'c') 
     {
@@ -97,29 +102,35 @@ void loop() {
     /* Se activa modo juego*/
     if((c == 'j') && bolsaAbierta) 
     {
+      Serial.print("Modo juego activado\n");
       for(int i=5;i>=0;i--) // Reemplazar por While (mientras no se mande por app una 'f'). Por ahora el juego dura 15 segundos
       {
         servoMotor.write(90);
         for(int j=3;j>=0;j--) // j = tiempo para embocar 
         {
+          delay(1000);
           tiempo = (pulseIn(EchoPin, HIGH)/2); 
           distancia = float(tiempo * 0.0343);
-          delay(1000);
-          if (distancia < 40)
+          if (distancia < 20)
           {
             anotacion++; 
+            Serial.print("Distancia: ");
+            Serial.println(distancia);
+            Serial.print("Anotacion: ");
+            Serial.println(anotacion);
           }          
         }
         servoMotor.write(0); 
+        delay(1000);
       }
       Serial.print(anotacion);  
       BTserial.write(anotacion); 
     }
-	/*Se cierra la bolsa*/
-	if(c == 'b')
-	{
-		cerrarBolsa = true;
-	}
+  	/*Se cierra la bolsa*/
+  	if(c == 'b')
+  	{
+  		cerrarBolsa = true;
+  	}
   }
 
   if(seCambioBolsa) //Se resetean los parámetros si se cambió la bolsa 
