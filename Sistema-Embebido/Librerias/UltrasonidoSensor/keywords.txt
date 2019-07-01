@@ -1,0 +1,6 @@
+UltrasonidoSensor 				KEYWORD1
+CalcularDistancia			 	KEYWORD2
+SetDistanciaActual				KEYWORD2
+GetDistanciaActual				KEYWORD2
+SetDistanciaMaxima				KEYWORD2
+GetDistanciaMaxima				KEYWORD2

@@ -1,0 +1,5 @@
+Tapa 				KEYWORD1
+Cerrar			 	KEYWORD2
+Abrir				KEYWORD2
+ModoJuegoActivado	KEYWORD2			
+PuedeLanzar			KEYWORD2
