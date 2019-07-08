@@ -14,8 +14,7 @@ import android.widget.Toast;
 import smarttrashcan.bluetooth.ConexionBluetooth;
 import smarttrashcan.bluetooth.ConnectedThread;
 
-public class accion_CambieBolsa extends AppCompatActivity implements SensorEventListener {
-    private ConnectedThread mConnectedThread;
+public class accion_CambieBolsa extends BluetoothActivity implements SensorEventListener {
     private final static float ACC = 20;
     private SensorManager sensor;
     private boolean signalWasSend = false;
@@ -47,20 +46,8 @@ public class accion_CambieBolsa extends AppCompatActivity implements SensorEvent
     @Override
     public void onResume() {
         super.onResume();
-        Intent intent = getIntent();
-        String address = intent.getExtras().getString(DispositivosBluetooth.extra_device_address);
-
         sensor = (SensorManager) getSystemService(SENSOR_SERVICE);
         registerSensor();
-
-        try {
-            mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, null);
-        } catch (Exception e) {
-            Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
-            Log.e("cambiebolsa", e.getMessage());
-        }
-
-        //mConnectedThread.write("cambiebolsa");
     }
 
     @Override

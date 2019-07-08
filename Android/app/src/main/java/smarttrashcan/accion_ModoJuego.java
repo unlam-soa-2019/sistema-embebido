@@ -15,8 +15,7 @@ import android.widget.Toast;
 import smarttrashcan.bluetooth.ConexionBluetooth;
 import smarttrashcan.bluetooth.ConnectedThread;
 
-public class accion_ModoJuego extends AppCompatActivity implements SensorEventListener {
-    private ConnectedThread mConnectedThread;
+public class accion_ModoJuego extends BluetoothActivity implements SensorEventListener {
     private Handler bluetoothIn;
     private StringBuilder recDataString = new StringBuilder();
     private SensorManager sensor;
@@ -60,7 +59,7 @@ public class accion_ModoJuego extends AppCompatActivity implements SensorEventLi
                     //voy concatenando el msj
                     String readMessage = (String) msg.obj;
                     recDataString.append(readMessage);
-                    int endOfLineIndex = recDataString.indexOf("\r\n");
+                    int endOfLineIndex = recDataString.indexOf("%");
 
                     //cuando recibo toda una linea la muestro en el layout
                     if (endOfLineIndex > 0)
@@ -76,21 +75,15 @@ public class accion_ModoJuego extends AppCompatActivity implements SensorEventLi
 
     }
 
+    protected Handler GetBluetoothHandler() {
+        return bluetoothIn;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        Intent intent = getIntent();
-        String address = intent.getExtras().getString(DispositivosBluetooth.extra_device_address);
-
         sensor = (SensorManager) getSystemService(SENSOR_SERVICE);
         registerSensor();
-
-        try {
-            mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, bluetoothIn);
-        } catch (Exception e) {
-            Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
-            Log.e("modulojuego", e.getMessage());
-        }
     }
 
     @Override
