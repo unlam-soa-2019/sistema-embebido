@@ -52,6 +52,14 @@
                 android:value="smarttrashcan.MenuAcciones" />
         </activity>
         <activity
+            android:name="smarttrashcan.accion_InformacionResiduos"
+            android:parentActivityName="smarttrashcan.MenuAcciones"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="smarttrashcan.MenuAcciones" />
+        </activity>
+        <activity
             android:name="smarttrashcan.MenuAcciones"
             android:parentActivityName="smarttrashcan.MainActivity"
             android:theme="@style/Theme.AppCompat.Light">

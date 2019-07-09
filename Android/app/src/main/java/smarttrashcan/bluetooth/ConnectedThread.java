@@ -2,6 +2,7 @@ package smarttrashcan.bluetooth;
 
 import android.bluetooth.BluetoothSocket;
 import android.os.Handler;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,7 +55,7 @@ public class ConnectedThread extends Thread {
                     // se envía al handler el mensaje obtenido del HC05
                     handlerBluetooth.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
                 } catch (IOException e) {
-                    break;
+                    Log.e("handlerBluetooth", e.getMessage());
                 }
             }
         }

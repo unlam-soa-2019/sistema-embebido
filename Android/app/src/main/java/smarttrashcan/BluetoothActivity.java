@@ -29,7 +29,7 @@ public class BluetoothActivity extends AppCompatActivity {
         String address = intent.getExtras().getString(DispositivosBluetooth.extra_device_address);
 
         try {
-            mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, null);
+            mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, GetBluetoothHandler());
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
             Log.e("connectedthread", e.getMessage());
