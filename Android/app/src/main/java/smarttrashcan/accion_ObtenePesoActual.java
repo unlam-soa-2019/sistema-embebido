@@ -55,7 +55,12 @@ public class accion_ObtenePesoActual extends BluetoothActivity {
                     if (endOfLineIndex > 0)
                     {
                         String dataInPrint = recDataString.substring(0, endOfLineIndex);
-                        txtPeso.setText(dataInPrint);
+                        Float value = Float.valueOf(dataInPrint);
+                        if (value < 0) {
+                            txtPeso.setText("0 gramos");
+                        } else {
+                            txtPeso.setText(dataInPrint+" gramos");
+                        }
                         recDataString.delete(0, recDataString.length());
                     }
                 }

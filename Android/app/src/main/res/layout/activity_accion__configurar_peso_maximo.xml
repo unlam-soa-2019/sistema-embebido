@@ -6,4 +6,65 @@
     android:layout_height="match_parent"
     tools:context="smarttrashcan.accion_ConfigurarPesoMaximo">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/label_configurar_peso"
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="30dp"
+            />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <RadioButton
+                android:id="@+id/cien_gramos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_btn_100g" />
+
+            <RadioButton
+                android:id="@+id/quinientos_gramos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_btn_500g" />
+
+            <RadioButton
+                android:id="@+id/un_kilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_btn_1k" />
+
+        </RadioGroup>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="30dp"
+            />
+
+        <Button
+            android:id="@+id/btn_enviar_peso_embebido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_enviar_peso_embebido" />
+
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -38,7 +38,7 @@ public class ConnectedThread extends Thread {
     // metodo run del hilo, que va a entrar en una espera activa para recibir los msjs del HC05
     public void run()
     {
-        if (handlerBluetooth != null)
+        if (handlerBluetooth != null && btSocket.isConnected())
         {
             byte[] buffer = new byte[256];
             int bytes;

@@ -20,13 +20,20 @@
             android:text="@string/label_informacion_residuos"
             android:textSize="18sp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="30dp"
+            />
+
         <TextView
             android:id="@+id/textEstadoResiduos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/loading"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

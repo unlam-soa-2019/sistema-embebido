@@ -25,7 +25,7 @@ public class accion_InformacionResiduos extends BluetoothActivity {
     public void onResume() {
         super.onResume();
         try {
-            mConnectedThread.write("p");
+            mConnectedThread.write("r");
         }
         catch (Exception e) {
             Toast.makeText(getBaseContext(), "No se pudo comunicar con SmartTrashCan", Toast.LENGTH_SHORT).show();
