@@ -9,12 +9,19 @@
     <string name="btn_set_modo_juego">¡Vamos a jugar!</string>
     <string name="btn_cambie_bolsa">Cambié la bolsa</string>
     <string name="btn_cerrar_bolsa">Cerrar bolsa</string>
+    <string name="btn_reciclable">Ver información residuos</string>
     <string name="label_menu_acciones">¿Qué desea hacer?</string>
     <string name="label_peso_actual">Peso actual del contenido del tacho</string>
     <string name="label_cambie_bolsa">Agite su celular y se enviará la señal de que ya cambió la bolsa</string>
     <string name="switch_senial">La señal fue enviada</string>
     <string name="label_cerre_bolsa">Utilize el sensor de proximidad y se enviará la señal de que se debe cerrar la bolsa</string>
     <string name="label_modo_juego">Ubique su celular en una zona con poca luz y comience a jugar</string>
-
+    <string name="label_informacion_residuos">Estado actual de los residuos...</string>
+    <string name="loading">(cargando)</string>
+    <string name="label_configurar_peso">Seleccione el peso máximo de sus residuos</string>
+    <string name="radio_btn_100g">100gr</string>
+    <string name="radio_btn_500g">500gr</string>
+    <string name="radio_btn_1k">1kg</string>
+    <string name="btn_enviar_peso_embebido">Enviar</string>
 </resources>
 

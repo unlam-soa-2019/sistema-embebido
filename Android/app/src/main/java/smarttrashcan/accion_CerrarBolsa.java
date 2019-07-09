@@ -1,21 +1,15 @@
 package smarttrashcan;
 
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import smarttrashcan.bluetooth.ConexionBluetooth;
-import smarttrashcan.bluetooth.ConnectedThread;
-
-public class accion_CerrarBolsa extends AppCompatActivity implements SensorEventListener {
-    private ConnectedThread mConnectedThread;
+public class accion_CerrarBolsa extends BluetoothActivity implements SensorEventListener {
     private SensorManager sensor;
     private boolean signalWasSend = false;
 
@@ -46,18 +40,8 @@ public class accion_CerrarBolsa extends AppCompatActivity implements SensorEvent
     @Override
     public void onResume() {
         super.onResume();
-        Intent intent = getIntent();
-        String address = intent.getExtras().getString(DispositivosBluetooth.extra_device_address);
-
         sensor = (SensorManager) getSystemService(SENSOR_SERVICE);
         registerSensor();
-
-        try {
-            mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, null);
-        } catch (Exception e) {
-            Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
-            Log.e("cerrarbolsa", e.getMessage());
-        }
     }
 
     @Override

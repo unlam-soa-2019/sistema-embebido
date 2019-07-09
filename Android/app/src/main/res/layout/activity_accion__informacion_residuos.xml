@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="smarttrashcan.accion_ObtenePesoActual">
+    tools:context="smarttrashcan.accion_InformacionResiduos">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,11 +13,11 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/labelPesoActual"
+            android:id="@+id/labelInformacionResiduos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/label_peso_actual"
+            android:text="@string/label_informacion_residuos"
             android:textSize="18sp" />
 
         <Space
@@ -27,7 +27,7 @@
             />
 
         <TextView
-            android:id="@+id/textPesoActual"
+            android:id="@+id/textEstadoResiduos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -35,4 +35,5 @@
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -2,35 +2,35 @@ package smarttrashcan;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import smarttrashcan.bluetooth.ConnectedThread;
 
-public class accion_ObtenePesoActual extends BluetoothActivity {
+public class accion_InformacionResiduos extends BluetoothActivity {
     private Handler bluetoothIn;
-    private TextView txtPeso;
+    private TextView txtEstadoResiduos;
     private StringBuilder recDataString = new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accion__obtene_peso_actual);
+        setContentView(R.layout.activity_accion__informacion_residuos);
         bluetoothIn = Handler_Msg_Hilo_Principal();
-        txtPeso = findViewById(R.id.textPesoActual);
+        txtEstadoResiduos = findViewById(R.id.textEstadoResiduos);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         try {
-            mConnectedThread.write("p");
+            mConnectedThread.write("r");
         }
         catch (Exception e) {
             Toast.makeText(getBaseContext(), "No se pudo comunicar con SmartTrashCan", Toast.LENGTH_SHORT).show();
         }
     }
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -54,12 +54,7 @@ public class accion_ObtenePesoActual extends BluetoothActivity {
                     if (endOfLineIndex > 0)
                     {
                         String dataInPrint = recDataString.substring(0, endOfLineIndex);
-                        Float value = Float.valueOf(dataInPrint);
-                        if (value < 0) {
-                            txtPeso.setText("0 gramos");
-                        } else {
-                            txtPeso.setText(dataInPrint+" gramos");
-                        }
+                        txtEstadoResiduos.setText(dataInPrint);
                         recDataString.delete(0, recDataString.length());
                     }
                 }

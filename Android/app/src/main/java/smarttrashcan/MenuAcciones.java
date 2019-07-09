@@ -45,5 +45,8 @@ public class MenuAcciones extends AppCompatActivity {
 
         Button btnCambieBolsa = findViewById(R.id.btnCambieBolsa);
         SetOnClickListener(btnCambieBolsa, accion_CambieBolsa.class);
+
+        Button btnEstadoResiduos = findViewById(R.id.btnReciclable);
+        SetOnClickListener(btnEstadoResiduos, accion_InformacionResiduos.class);
     }
 }

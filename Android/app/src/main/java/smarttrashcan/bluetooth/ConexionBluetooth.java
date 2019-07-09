@@ -72,8 +72,6 @@ public class ConexionBluetooth {
             // se establece la conexión al socket
             connectSocket(device, btSocket);
 
-
-
             // Una establecida la conexion con el Hc05 se crea el hilo secundario, el cual va a recibir
             // los datos de Arduino atraves del bluethoot
             mConnectedThread = new ConnectedThread(btSocket, handler);
