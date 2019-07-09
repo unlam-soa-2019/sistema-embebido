@@ -20,6 +20,12 @@
             android:text="@string/label_peso_actual"
             android:textSize="18sp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="30dp"
+            />
+
         <TextView
             android:id="@+id/textPesoActual"
             android:layout_width="match_parent"

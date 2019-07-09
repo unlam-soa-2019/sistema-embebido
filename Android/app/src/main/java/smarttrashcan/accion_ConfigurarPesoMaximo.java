@@ -15,7 +15,6 @@ public class accion_ConfigurarPesoMaximo extends BluetoothActivity {
     private RadioButton radioBtnDos;
     private RadioButton radioBtnTres;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +46,15 @@ public class accion_ConfigurarPesoMaximo extends BluetoothActivity {
                 } catch (Exception e) {
                     Toast.makeText(getBaseContext(), "No se pudo enviar, reintente", Toast.LENGTH_SHORT).show();
                 }
-
-
-
             }
         });
     }
 
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        mConnectedThread.close();
+    }
 
 }
