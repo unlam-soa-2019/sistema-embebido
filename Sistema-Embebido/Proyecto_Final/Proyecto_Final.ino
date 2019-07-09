@@ -20,28 +20,38 @@ char datoObtenido = ' ';
 #define DHTTYPE DHT11
 #define TSERVO 1000
 #define TSERVOJUEGO 5
-#define TUSONIDO 15
+#define SENSORPIR 7
+#define LEDPIN 8
+#define RELEPIN = 13
+#define ECHOPIN 5 // receptor ultrasonico
+#define TRIGGERPIN 6 // emisor ultrasonico
+#define distanciaCerrarBolsa 10
+#define valorServoArriba 90
+#define valorServoAbajo 0
+#define tiempDeJuego 15000
+#define stabilisingTimeBalanza 2000
+#define calibracionBalanza 213.00 // Factor de calibración para 1kg = 212.00
+
+// identificacion residuos
+#define humedadMenor = 15;
+#define humedadMayor = 20;
+#define pesoMenor = 50;
+#define pesoMayor = 100;
+
 
 DHT_Unified dht(DHTPIN, DHTTYPE);
 uint32_t delayMS;
 
 HX711_ADC LoadCell(A1, A0);
 
-//Sensor PIR
-byte sensorpir = 7;
-
 //Sensor ultrasónico
-const int EchoPin = 5;
-const int TriggerPin = 6;
 float distanciaBasura;
 unsigned long tiempo;
 unsigned long tiempoUltraSonido = 0;
 
+
 //Servo
 Servo servoMotor;
-
-//Led
-const int LedPin = 8;
 
 //Variables adicionales
 bool bolsaAbierta = true;
@@ -50,51 +60,38 @@ bool pedidoCerrarBolsa = false;
 bool seSeteoPesoMaximo = false;
 bool tachoLleno = false;
 int anotacion = 0;
-const int rele = 13;
 float pesoActual;
 float pesoMaximo;
 float humedad;
-const int distanciaCerrarBolsa = 10;
-const int humedadMenor = 15;
-const int humedadMayor = 20;
-const int pesoMenor = 50;
-const int pesoMayor = 100;
-const int valorServoArriba = 90;
-const int valorServoAbajo = 0;
-const int tiempDeJuego = 15000;
 
 void setup() 
 {
-  // put your setup code here, to run once:
   Serial.begin(9600);
 
   //Pir
-  pinMode(sensorpir, INPUT);
+  pinMode(SENSORPIR, INPUT);
 
   //Servo
   servoMotor.attach(9);
 
   //Sensor ultrasónico
-  pinMode(TriggerPin, OUTPUT);
-  pinMode(EchoPin, INPUT);
+  pinMode(TRIGGERPIN, OUTPUT);
+  pinMode(ECHOPIN, INPUT);
 
   //Relé
-  pinMode(rele,OUTPUT);
+  pinMode(RELEPIN, OUTPUT);
 
   //Sensor humedad
   dht.begin();
 
   //Se configura la velocidad del puerto serie para poder imprimir en el puerto Serie
-  //Serial.println("Inicializando configuracion del HC-05...");   
   //Se configura la velocidad de transferencia de datos entre el Bluethoot  HC05 y el de Android.
   BTserial.begin(9600); 
-  //Serial.println("Esperando Comandos AT...");
-
+  
   //Balanza
   LoadCell.begin();
-  long stabilisingtime = 2000; // tare preciscion can be improved by adding a few seconds of stabilising time
   LoadCell.start(stabilisingtime);
-  LoadCell.setCalFactor(213.00); // Factor de calibración para 1kg = 212.00
+  LoadCell.setCalFactor(calibracionBalanza); 
   
   //Led
   pinMode(LedPin, OUTPUT);
@@ -104,12 +101,12 @@ void setup()
 
 void loop() 
 {
-  // put your main code here, to run repeatedly:
   if (bolsaAbierta)
   {
     AbrirCerrarTapa();
   }
-  if(millis() > tiempoUltraSonido + TSERVO)
+  if(millis() > tiempoUltraSonido + TSERVO) // hacemos espera no bloqueante porque cuando se cierra la tapa, 
+                                            // provoca que el ultrasonido detecte una distancia muy chica y se nos cierra la bolsa
   {
     tiempoUltraSonido = millis();
     distanciaBasura = ObtenerDistanciaBasura();
@@ -148,11 +145,11 @@ void Inicializar()
 
 void AbrirCerrarTapa()
 {
-  if(digitalRead(sensorpir) == HIGH)
+  if(digitalRead(SENSORPIR) == HIGH)
   {
     servoMotor.write(valorServoArriba);
     Serial.println("Se abre la tapa");
-    delay(5000); //Esperamos 5 segundos antes de cerrar la tapa.
+    delay(5000); //Esperamos 5 segundos antes de cerrar la tapa para que el usuario arroje los residuos.
     servoMotor.write(valorServoAbajo);
     delay(1000); //Esperamos 1 segundo para que la tapa no intente cerrar y volver a abrir instantaneamente si detecta el PIR.
   }
@@ -160,20 +157,20 @@ void AbrirCerrarTapa()
 
 float ObtenerDistanciaBasura()
 {
-  digitalWrite(TriggerPin, HIGH);
+  digitalWrite(TRIGGERPIN, HIGH);
   delayMicroseconds(10);
-  digitalWrite(TriggerPin, LOW);
-  tiempo = (pulseIn(EchoPin, HIGH)/2); 
-  return float(tiempo * 0.0343);
+  digitalWrite(TRIGGERPIN, LOW);
+  tiempo = (pulseIn(ECHOPIN, HIGH)/2); 
+  return float(tiempo * 0.0343); // el sonido viaja a 343 metros por segundo
 }
 
 void CerrarBolsa()
 {
   //Serial.println(distanciaBasura); //SACAR
   servoMotor.write(valorServoAbajo);
-  digitalWrite(rele, HIGH);
+  digitalWrite(RELEPIN, HIGH);
   delay(5000); //Tiempo de cerrado de la bolsa.
-  digitalWrite(rele, LOW);
+  digitalWrite(RELEPIN, LOW);
   bolsaAbierta = false;
   pedidoCerrarBolsa  = false;
   servoMotor.write(valorServoArriba);
