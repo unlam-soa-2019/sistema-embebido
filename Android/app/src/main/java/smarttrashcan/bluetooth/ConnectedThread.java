@@ -55,7 +55,7 @@ public class ConnectedThread extends Thread {
                     // se envía al handler el mensaje obtenido del HC05
                     handlerBluetooth.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
                 } catch (IOException e) {
-                    Log.e("handlerBluetooth", e.getMessage());
+                    // Log.e("handlerBluetooth", e.getMessage());
                 }
             }
         }

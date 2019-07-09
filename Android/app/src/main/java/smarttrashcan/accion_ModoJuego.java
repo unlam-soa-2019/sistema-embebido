@@ -1,19 +1,13 @@
 package smarttrashcan;
 
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Switch;
 import android.widget.Toast;
-
-import smarttrashcan.bluetooth.ConexionBluetooth;
-import smarttrashcan.bluetooth.ConnectedThread;
 
 public class accion_ModoJuego extends BluetoothActivity implements SensorEventListener {
     private SensorManager sensor;
@@ -43,7 +37,6 @@ public class accion_ModoJuego extends BluetoothActivity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accion__modo_juego);
     }
-
 
     @Override
     public void onResume() {
