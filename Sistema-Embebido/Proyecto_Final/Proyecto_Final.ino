@@ -22,7 +22,7 @@ char datoObtenido = ' ';
 #define TSERVOJUEGO 5
 #define SENSORPIR 7
 #define LEDPIN 8
-#define RELEPIN = 13
+#define RELEPIN 13
 #define ECHOPIN 5 // receptor ultrasonico
 #define TRIGGERPIN 6 // emisor ultrasonico
 #define distanciaCerrarBolsa 10
@@ -33,10 +33,10 @@ char datoObtenido = ' ';
 #define calibracionBalanza 213.00 // Factor de calibración para 1kg = 212.00
 
 // identificacion residuos
-#define humedadMenor = 15;
-#define humedadMayor = 20;
-#define pesoMenor = 50;
-#define pesoMayor = 100;
+#define humedadMenor 15
+#define humedadMayor 20
+#define pesoMenor 50
+#define pesoMayor 100
 
 
 DHT_Unified dht(DHTPIN, DHTTYPE);
@@ -90,11 +90,11 @@ void setup()
   
   //Balanza
   LoadCell.begin();
-  LoadCell.start(stabilisingtime);
+  LoadCell.start(stabilisingTimeBalanza);
   LoadCell.setCalFactor(calibracionBalanza); 
   
   //Led
-  pinMode(LedPin, OUTPUT);
+  pinMode(LEDPIN, OUTPUT);
   
   Inicializar();
 }
@@ -140,7 +140,7 @@ void loop()
 void Inicializar()
 {
   servoMotor.write(valorServoAbajo);
-  digitalWrite(LedPin , HIGH);
+  digitalWrite(LEDPIN , HIGH);
 }
 
 void AbrirCerrarTapa()
@@ -174,7 +174,7 @@ void CerrarBolsa()
   bolsaAbierta = false;
   pedidoCerrarBolsa  = false;
   servoMotor.write(valorServoArriba);
-  digitalWrite(LedPin , LOW);
+  digitalWrite(LEDPIN , LOW);
   if (distanciaBasura < distanciaCerrarBolsa)
   {
     tachoLleno = true;
@@ -256,7 +256,7 @@ void IniciarModoJuego()
       tiempo_1 = millis();
       posicionServo++;
       servoMotor.write(posicionServo);
-      digitalWrite(LedPin , HIGH);
+      digitalWrite(LEDPIN , HIGH);
       if (posicionServo == valorServoArriba){
         levantando = false;
       }
@@ -267,7 +267,7 @@ void IniciarModoJuego()
       tiempo_1 = millis();
       posicionServo--;
       servoMotor.write(posicionServo);
-      digitalWrite(LedPin , LOW);
+      digitalWrite(LEDPIN , LOW);
       if (posicionServo == valorServoAbajo)
       {
         levantando = true;
@@ -282,7 +282,7 @@ void IniciarModoJuego()
 void ConfigurarPorCambioDeBolsa()
 {
   servoMotor.write(valorServoAbajo);
-  digitalWrite(LedPin , HIGH);
+  digitalWrite(LEDPIN , HIGH);
   bolsaAbierta = true; 
   seCambioBolsa = false;
   tachoLleno = false;
