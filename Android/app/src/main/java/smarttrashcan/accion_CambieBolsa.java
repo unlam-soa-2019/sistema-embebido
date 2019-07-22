@@ -9,6 +9,10 @@ import android.util.Log;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.lang.reflect.Type;
+
+import smarttrashcan.bluetooth.TypeBluetoothThread;
+
 public class accion_CambieBolsa extends BluetoothActivity implements SensorEventListener {
     private final static float ACC = 20;
     private SensorManager sensor;
@@ -30,6 +34,10 @@ public class accion_CambieBolsa extends BluetoothActivity implements SensorEvent
     private void unregisterSensor() {
         sensor.unregisterListener(this);
         Log.i("sensor", "unregister");
+    }
+
+    protected TypeBluetoothThread GetTypeOfBluetoothOperation() {
+        return TypeBluetoothThread.Write;
     }
 
     @Override
@@ -62,7 +70,6 @@ public class accion_CambieBolsa extends BluetoothActivity implements SensorEvent
                 Log.i("sensor", "running");
                 try {
                     if (!signalWasSend) {
-
                         mConnectedThread.addMessageToQueue("c");
                         ((Switch)findViewById(R.id.switch_cambie_bolsa)).setChecked(true);
                         signalWasSend = true;

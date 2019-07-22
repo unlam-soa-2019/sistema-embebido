@@ -6,6 +6,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import smarttrashcan.bluetooth.ConnectedThread;
+import smarttrashcan.bluetooth.TypeBluetoothThread;
 
 public class accion_InformacionResiduos extends BluetoothActivity {
     private Handler bluetoothIn;
@@ -23,12 +24,7 @@ public class accion_InformacionResiduos extends BluetoothActivity {
     @Override
     public void onResume() {
         super.onResume();
-        try {
-            mConnectedThread.addMessageToQueue("r");
-        }
-        catch (Exception e) {
-            Toast.makeText(getBaseContext(), "No se pudo comunicar con SmartTrashCan", Toast.LENGTH_SHORT).show();
-        }
+        mConnectedThread.readSignalToSend = "r";
     }
     @Override
     protected void onStop() {
@@ -58,7 +54,10 @@ public class accion_InformacionResiduos extends BluetoothActivity {
                 }
             }
         };
+    }
 
+    protected TypeBluetoothThread GetTypeOfBluetoothOperation() {
+        return TypeBluetoothThread.Read;
     }
 
     protected Handler GetBluetoothHandler() {

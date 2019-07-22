@@ -7,6 +7,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import smarttrashcan.bluetooth.TypeBluetoothThread;
+
 public class accion_ConfigurarPesoMaximo extends BluetoothActivity {
     private Button btnEnviar;
     private RadioGroup radioGroup;
@@ -49,9 +51,12 @@ public class accion_ConfigurarPesoMaximo extends BluetoothActivity {
         });
     }
 
+    protected TypeBluetoothThread GetTypeOfBluetoothOperation() {
+        return TypeBluetoothThread.Write;
+    }
+
     @Override
-    protected void onStop()
-    {
+    protected void onStop() {
         super.onStop();
     }
 

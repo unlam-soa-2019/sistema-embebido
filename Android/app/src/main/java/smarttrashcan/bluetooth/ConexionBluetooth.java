@@ -13,11 +13,21 @@ public class ConexionBluetooth {
         return bluetoothAdapter;
     }
 
-    public static ConnectedThread getConnectedThreadToBluetoothDevice(String address, Handler handler, Handler handlerError)
+    public static ConnectedThread getConnectedThreadToBluetoothDevice(String address, Handler handler, Handler handlerError, TypeBluetoothThread type)
         throws Exception {
         try {
             // Se establece la conexión con el módulo bluetooth según la dirección
-            ConnectedThread mConnectedThread = new ConnectedThread(address, handler, handlerError);
+            ConnectedThread mConnectedThread;
+            switch (type) {
+                case Read:
+                    mConnectedThread = new ReadBluetoothThread(address, handler, handlerError);
+                    break;
+                case Write:
+                    mConnectedThread = new WriteBluetoothThread(address, handler, handlerError);
+                    break;
+                    default:
+                        throw new Exception("Tipo no definido");
+            }
             mConnectedThread.start();
             return mConnectedThread;
         }

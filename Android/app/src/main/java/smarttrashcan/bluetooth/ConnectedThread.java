@@ -18,20 +18,21 @@ import java.util.UUID;
 
 public class ConnectedThread extends Thread {
 
-    private InputStream mmInStream;
     private OutputStream mmOutStream;
-    private BluetoothSocket btSocket = null;
     private boolean hasTriedToInitialize = false;
     private String deviceAddress = null;
-    private Queue<String> messagesQueue = new LinkedList<String>();
+    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-    private final Handler handlerBluetooth;
-    private final Handler handlerError;
+    protected Queue<String> messagesQueue = new LinkedList<String>();
+    protected final Handler handlerBluetooth;
+    protected final Handler handlerError;
+    protected InputStream mmInStream;
+    protected BluetoothSocket btSocket = null;
 
+    public String readSignalToSend = "";
     public static final int btMessageReceived = 0; // used to identify handler message
     public static final int btErrorHandler = 1;
 
-    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device)
             throws Exception {
@@ -82,7 +83,9 @@ public class ConnectedThread extends Thread {
                 testConnection(); // envio un char de prueba
             }
         } catch (Exception e) {
-            Log.e("ConnectedThread", "Error al establecer conexión (" + e.getMessage() + ")");
+            if (handlerError != null) {
+                handlerError.obtainMessage(btErrorHandler, e.getMessage()).sendToTarget();
+            }
         }
 
         InputStream tmpIn = null;
@@ -100,7 +103,7 @@ public class ConnectedThread extends Thread {
     }
 
     // write method
-    private void write(String input) throws IOException {
+    protected void write(String input) throws IOException {
         byte[] msgBuffer = input.getBytes(); //converts entered String into bytes
         mmOutStream.write(msgBuffer); //write bytes over BT connection via outstream
     }
@@ -117,40 +120,6 @@ public class ConnectedThread extends Thread {
     {
         if (hasTriedToInitialize == false) {
             establishConnectionToDevice(deviceAddress);
-        }
-
-        // escritura
-        while (!messagesQueue.isEmpty() && btSocket.isConnected()) {
-            try {
-                write(messagesQueue.remove());
-            } catch (IOException e) {
-                if (handlerError != null) {
-                    handlerError.obtainMessage(btErrorHandler, e.getMessage()).sendToTarget();
-                }
-            }
-        }
-
-        // lectura
-        if (handlerBluetooth != null && btSocket.isConnected())
-        {
-            byte[] buffer = new byte[256];
-            int bytes;
-
-            //el hilo secundario se queda esperando mensajes del HC05
-            while (true)
-            {
-                try
-                {
-                    //se leen los datos del Bluethoot
-                    bytes = mmInStream.read(buffer);
-                    String readMessage = new String(buffer, 0, bytes);
-
-                    // se envía al handler el mensaje obtenido del HC05
-                    handlerBluetooth.obtainMessage(btMessageReceived, bytes, -1, readMessage).sendToTarget();
-                } catch (IOException e) {
-                    // Log.e("handlerBluetooth", e.getMessage());
-                }
-            }
         }
     }
 

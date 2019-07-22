@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import smarttrashcan.bluetooth.ConexionBluetooth;
 import smarttrashcan.bluetooth.ConnectedThread;
+import smarttrashcan.bluetooth.TypeBluetoothThread;
 
 public class BluetoothActivity extends AppCompatActivity {
     protected ConnectedThread mConnectedThread;
@@ -41,11 +42,15 @@ public class BluetoothActivity extends AppCompatActivity {
         String address = intent.getExtras().getString(DispositivosBluetooth.extra_device_address);
 
         try {
-            mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, GetBluetoothHandler(), GetConnectivityError());
+            mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, GetBluetoothHandler(), GetConnectivityError(), GetTypeOfBluetoothOperation());
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
             Log.e("connectedthread", e.getMessage());
         }
+    }
+
+    protected TypeBluetoothThread GetTypeOfBluetoothOperation() {
+        return null;
     }
 
     @Override

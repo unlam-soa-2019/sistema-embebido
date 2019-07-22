@@ -9,6 +9,8 @@ import android.util.Log;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import smarttrashcan.bluetooth.TypeBluetoothThread;
+
 public class accion_ModoJuego extends BluetoothActivity implements SensorEventListener {
     private SensorManager sensor;
     private boolean signalWasSend = false;
@@ -67,6 +69,10 @@ public class accion_ModoJuego extends BluetoothActivity implements SensorEventLi
                 }
             }
         }
+    }
+
+    protected TypeBluetoothThread GetTypeOfBluetoothOperation() {
+        return TypeBluetoothThread.Write;
     }
 
     @Override
