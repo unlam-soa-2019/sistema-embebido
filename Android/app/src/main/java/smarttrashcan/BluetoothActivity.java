@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import smarttrashcan.bluetooth.ConexionBluetooth;
 import smarttrashcan.bluetooth.ConnectedThread;
+import smarttrashcan.bluetooth.TypeBluetoothThread;
 
 public class BluetoothActivity extends AppCompatActivity {
     protected ConnectedThread mConnectedThread;
@@ -22,6 +23,18 @@ public class BluetoothActivity extends AppCompatActivity {
         return null;
     }
 
+    protected Handler GetConnectivityError() {
+        return new Handler() {
+            public void handleMessage(android.os.Message msg)
+            {
+                if (msg.what == ConnectedThread.btErrorHandler) {
+                    Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
+                    Log.e("connectedthread", msg.obj.toString());
+                }
+            }
+        };
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -29,12 +42,21 @@ public class BluetoothActivity extends AppCompatActivity {
         String address = intent.getExtras().getString(DispositivosBluetooth.extra_device_address);
 
         try {
-            mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, GetBluetoothHandler());
+            mConnectedThread = ConexionBluetooth.getConnectedThreadToBluetoothDevice(address, GetBluetoothHandler(), GetConnectivityError(), GetTypeOfBluetoothOperation());
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Ocurrió un error al intentar establecer conexión con el módulo bluetooth", Toast.LENGTH_SHORT).show();
             Log.e("connectedthread", e.getMessage());
         }
     }
 
+    protected TypeBluetoothThread GetTypeOfBluetoothOperation() {
+        return null;
+    }
+
+    @Override
+    protected void onStop() {
+        mConnectedThread.close();
+        super.onStop();
+    }
 
 }

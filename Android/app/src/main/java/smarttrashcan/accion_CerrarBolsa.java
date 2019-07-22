@@ -9,6 +9,10 @@ import android.util.Log;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.lang.reflect.Type;
+
+import smarttrashcan.bluetooth.TypeBluetoothThread;
+
 public class accion_CerrarBolsa extends BluetoothActivity implements SensorEventListener {
     private SensorManager sensor;
     private boolean signalWasSend = false;
@@ -58,8 +62,7 @@ public class accion_CerrarBolsa extends BluetoothActivity implements SensorEvent
                 Log.i("sensor", "running");
                 try {
                     if (!signalWasSend) {
-                        mConnectedThread.write("b");
-                        mConnectedThread.close();
+                        mConnectedThread.addMessageToQueue("b");
                         ((Switch)findViewById(R.id.switch_cerre_bolsa)).setChecked(true);
                         signalWasSend = true;
                     }
@@ -68,6 +71,10 @@ public class accion_CerrarBolsa extends BluetoothActivity implements SensorEvent
                 }
             }
         }
+    }
+
+    protected TypeBluetoothThread GetTypeOfBluetoothOperation() {
+        return TypeBluetoothThread.Write;
     }
 
     @Override
