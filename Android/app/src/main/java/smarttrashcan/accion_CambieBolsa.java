@@ -1,18 +1,13 @@
 package smarttrashcan;
 
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Switch;
 import android.widget.Toast;
-
-import smarttrashcan.bluetooth.ConexionBluetooth;
-import smarttrashcan.bluetooth.ConnectedThread;
 
 public class accion_CambieBolsa extends BluetoothActivity implements SensorEventListener {
     private final static float ACC = 20;
@@ -68,8 +63,7 @@ public class accion_CambieBolsa extends BluetoothActivity implements SensorEvent
                 try {
                     if (!signalWasSend) {
 
-                        mConnectedThread.write("c");
-                        mConnectedThread.close();
+                        mConnectedThread.addMessageToQueue("c");
                         ((Switch)findViewById(R.id.switch_cambie_bolsa)).setChecked(true);
                         signalWasSend = true;
                     }

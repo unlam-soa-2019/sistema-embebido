@@ -24,7 +24,7 @@ public class accion_ObtenePesoActual extends BluetoothActivity {
     public void onResume() {
         super.onResume();
         try {
-            mConnectedThread.write("p");
+            mConnectedThread.addMessageToQueue("p");
         }
         catch (Exception e) {
             Toast.makeText(getBaseContext(), "No se pudo comunicar con SmartTrashCan", Toast.LENGTH_SHORT).show();
@@ -34,7 +34,6 @@ public class accion_ObtenePesoActual extends BluetoothActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mConnectedThread.close();
     }
 
     private Handler Handler_Msg_Hilo_Principal ()
@@ -43,7 +42,7 @@ public class accion_ObtenePesoActual extends BluetoothActivity {
             public void handleMessage(android.os.Message msg)
             {
                 //si se recibio un msj del hilo secundario
-                if (msg.what == ConnectedThread.handlerState)
+                if (msg.what == ConnectedThread.btMessageReceived)
                 {
                     //voy concatenando el msj
                     String readMessage = (String) msg.obj;

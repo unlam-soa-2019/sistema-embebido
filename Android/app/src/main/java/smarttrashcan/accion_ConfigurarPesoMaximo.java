@@ -1,6 +1,5 @@
 package smarttrashcan;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,11 +32,11 @@ public class accion_ConfigurarPesoMaximo extends BluetoothActivity {
                 int idSelected = radioGroup.getCheckedRadioButtonId();
                 try {
                     if (idSelected == R.id.cien_gramos) {
-                        mConnectedThread.write("1");
+                        mConnectedThread.addMessageToQueue("1");
                     } else if (idSelected == R.id.quinientos_gramos) {
-                        mConnectedThread.write("2");
+                        mConnectedThread.addMessageToQueue("2");
                     } else {
-                        mConnectedThread.write("3");
+                        mConnectedThread.addMessageToQueue("3");
                     }
 
                     btnEnviar.setEnabled(false);
@@ -54,7 +53,6 @@ public class accion_ConfigurarPesoMaximo extends BluetoothActivity {
     protected void onStop()
     {
         super.onStop();
-        mConnectedThread.close();
     }
 
 }

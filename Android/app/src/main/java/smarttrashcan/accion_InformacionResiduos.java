@@ -2,7 +2,6 @@ package smarttrashcan;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +24,7 @@ public class accion_InformacionResiduos extends BluetoothActivity {
     public void onResume() {
         super.onResume();
         try {
-            mConnectedThread.write("r");
+            mConnectedThread.addMessageToQueue("r");
         }
         catch (Exception e) {
             Toast.makeText(getBaseContext(), "No se pudo comunicar con SmartTrashCan", Toast.LENGTH_SHORT).show();
@@ -34,7 +33,6 @@ public class accion_InformacionResiduos extends BluetoothActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mConnectedThread.close();
     }
 
     private Handler Handler_Msg_Hilo_Principal ()
@@ -43,7 +41,7 @@ public class accion_InformacionResiduos extends BluetoothActivity {
             public void handleMessage(android.os.Message msg)
             {
                 //si se recibio un msj del hilo secundario
-                if (msg.what == ConnectedThread.handlerState)
+                if (msg.what == ConnectedThread.btMessageReceived)
                 {
                     //voy concatenando el msj
                     String readMessage = (String) msg.obj;

@@ -58,8 +58,7 @@ public class accion_CerrarBolsa extends BluetoothActivity implements SensorEvent
                 Log.i("sensor", "running");
                 try {
                     if (!signalWasSend) {
-                        mConnectedThread.write("b");
-                        mConnectedThread.close();
+                        mConnectedThread.addMessageToQueue("b");
                         ((Switch)findViewById(R.id.switch_cerre_bolsa)).setChecked(true);
                         signalWasSend = true;
                     }
