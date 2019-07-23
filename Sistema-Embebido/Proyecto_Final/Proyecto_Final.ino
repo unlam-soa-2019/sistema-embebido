@@ -31,6 +31,8 @@ char datoObtenido = ' ';
 #define tiempDeJuego 15000
 #define stabilisingTimeBalanza 2000
 #define calibracionBalanza 213.00 // Factor de calibración para 1kg = 212.00
+#define velocidadSonido 0.0343 // el sonido viaja a 343 metros por segundo
+#define tiempoEsperaTapa 5000
 
 // identificacion residuos
 #define humedadMenor 15
@@ -52,6 +54,7 @@ unsigned long tiempoUltraSonido = 0;
 
 //Servo
 Servo servoMotor;
+unsigned long tiempoTapa = 0;
 
 //Variables adicionales
 bool bolsaAbierta = true;
@@ -59,6 +62,7 @@ bool seCambioBolsa = false; //Seteado desde la app
 bool pedidoCerrarBolsa = false;
 bool seSeteoPesoMaximo = false;
 bool tachoLleno = false;
+bool tapaAbierta = false;
 int anotacion = 0;
 float pesoActual;
 float pesoMaximo;
@@ -145,13 +149,17 @@ void Inicializar()
 
 void AbrirCerrarTapa()
 {
-  if(digitalRead(SENSORPIR) == HIGH)
+  if(!tapaAbierta && digitalRead(SENSORPIR) == HIGH)
   {
     servoMotor.write(valorServoArriba);
+    tapaAbierta = true;
     Serial.println("Se abre la tapa");
-    delay(5000); //Esperamos 5 segundos antes de cerrar la tapa para que el usuario arroje los residuos.
+    tiempoTapa = millis();
+  }
+  if (tapaAbierta && (millis() > tiempoTapa + tiempoEsperaTapa)) //Esperamos 5 segundos antes de cerrar la tapa para que el usuario arroje los residuos.
+  {
     servoMotor.write(valorServoAbajo);
-    delay(1000); //Esperamos 1 segundo para que la tapa no intente cerrar y volver a abrir instantaneamente si detecta el PIR.
+    tapaAbierta = false;
   }
 }
 
@@ -161,12 +169,11 @@ float ObtenerDistanciaBasura()
   delayMicroseconds(10);
   digitalWrite(TRIGGERPIN, LOW);
   tiempo = (pulseIn(ECHOPIN, HIGH)/2); 
-  return float(tiempo * 0.0343); // el sonido viaja a 343 metros por segundo
+  return float(tiempo * velocidadSonido);
 }
 
 void CerrarBolsa()
 {
-  //Serial.println(distanciaBasura); //SACAR
   servoMotor.write(valorServoAbajo);
   digitalWrite(RELEPIN, HIGH);
   delay(5000); //Tiempo de cerrado de la bolsa.
